@@ -1,12 +1,12 @@
-class NonprofitController < ApplicationController 
+class NonprofitController < ApplicationController
 
   def index
-    @nonprofits = Nonprofit.all 
+    @nonprofits = Nonprofit.all
   end
 
-  def new 
-    @nonprofit = Nonprofit.new 
-  end 
+  def new
+    @nonprofit = Nonprofit.new
+  end
 
   def create
     @nonprofit = Nonprofit.new(nonprofit_params)
@@ -18,23 +18,23 @@ class NonprofitController < ApplicationController
       flash[:notice] = "Work harder. Failed to save."
       render 'new'
     end
-  end 
+  end
 
   def delete
     @nonprofit = Nonprofit.find(params[:id])
-    if @nonprofit.delete 
+    if @nonprofit.delete
       flash[:notice] = "Nonprofit deleted"
-      redirect_to nonprofit_index_path 
+      redirect_to nonprofit_index_path
     else
       flash[:alert] = "Failed to delete"
       render "show"
     end
-  end 
+  end
 
-  private 
-  
+  private
+
   def nonprofit_params
     params.require(:nonprofit).permit(:name)
-  end 
+  end
 
-end 
+end

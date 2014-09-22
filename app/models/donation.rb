@@ -1,3 +1,5 @@
+require "stripe"
+
 class Donation < ActiveRecord::Base
 
   validates :amount, presence: true
@@ -8,12 +10,14 @@ class Donation < ActiveRecord::Base
   belongs_to :nonprofit
   belongs_to :user
 
+  accepts_nested_attributes_for :card
   before_create :charge
 
 private
 
   def charge
-    Stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
+
+  Stripe.api_key = "sk_test_ZFzLG0BFYwyS8gFOe4HUCdED"
 
     Stripe::Charge.create(
       :amount => 400,

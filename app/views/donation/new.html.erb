@@ -1,0 +1,51 @@
+<h1>NONPROFIT NAME</h1>
+
+<h1>Make a donation!</h1>
+
+<%= form_for @donation do |f| %>
+
+<!--   Error Messages  -->
+  <% if @donation.errors.any? %>
+    <% @donation.errors.messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <div class="form-control">
+    <%= f.label :amount %>
+    <%= f.integer :amount %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :currency %>
+    <%= f.text_field :currency %>
+  </div>
+
+<!--     need to fix this  -->
+<%#= hidden_field :user_id %>
+
+    <h3>Credit Card Information</h3>
+    <%= f.fields_for @card do |ff| %>
+      <div class="form-control">
+        <%= ff.label :number %>
+        <%= ff.text_field :number %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :exp_month %>
+        <%= ff.text_field :exp_month %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :exp_year %>
+        <%= ff.text_field :exp_year %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :cvc %>
+        <%= ff.text_field :cvc %>
+      </div>
+    <% end %>
+
+  <%= f.submit "Donate" %>
+<% end %>
+
+
+
