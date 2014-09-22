@@ -1,4 +1,4 @@
-class NonprofitController < ApplicationController
+class NonprofitsController < ApplicationController
 
   def index
     @nonprofits = Nonprofit.all

@@ -1,11 +1,14 @@
-class DonationController < ApplicationController
+class DonationsController < ApplicationController
 
   def index
-    @donation = Donation.all
+    @nonprofit = Nonprofit.find(params["nonprofit_id"])
+    @donations = Donation.all
   end
 
   def new
     @donation = Donation.new
+    @nonprofit = Nonprofit.find(params["nonprofit_id"])
+    render "new"
   end
 
   def create

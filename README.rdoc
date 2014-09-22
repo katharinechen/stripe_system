@@ -1,6 +1,6 @@
 ##Non-profit donations
 
-- [ ] users?
+- [ ] Working on donation form
 
 - [ ] Now, let users choose a non-profit to donate to.To do this, use the Stripe API. Read the documentation on how to build a form with Stripe, and then how to charge a card after the number has been submitted to Stripe in exchange for a token. When you're testing, make sure to use the magic testing numbers so you don't need to use a real credit card!
 
@@ -29,3 +29,45 @@ Stripe::Charge.create(
   },
   :description => "Charge for test@example.com"
 )
+
+<!--   Error Messages  -->
+  <% if @donation.errors.any? %>
+    <% @donation.errors.messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+
+  <div class="form-control">
+    <%= f.label :amount %>
+    <%= f.integer :amount %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :currency %>
+    <%= f.text_field :currency %>
+  </div>
+
+<!--     need to fix this  -->
+<%#= hidden_field :user_id %>
+
+    <h3>Credit Card Information</h3>
+    <%= f.fields_for @card do |ff| %>
+      <div class="form-control">
+        <%= ff.label :number %>
+        <%= ff.text_field :number %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :exp_month %>
+        <%= ff.text_field :exp_month %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :exp_year %>
+        <%= ff.text_field :exp_year %>
+      </div>
+      <div class="form-control">
+        <%= ff.label :cvc %>
+        <%= ff.text_field :cvc %>
+      </div>
+    <% end %>
+
+  <%= f.submit "Donate" %>
