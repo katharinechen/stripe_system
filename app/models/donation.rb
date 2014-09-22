@@ -1,18 +1,18 @@
-class Donation < ActiveRecord::Base 
+class Donation < ActiveRecord::Base
 
-  validates :amount, presence: true 
-  validates :currency, presence: true 
-  validates :card_id, presence: true 
+  validates :amount, presence: true
+  validates :currency, presence: true
+  validates :card_id, presence: true
 
-  belongs_to :card 
-  belongs_to :nonprofit 
-  has_one :user, through: :card 
+  belongs_to :card
+  belongs_to :nonprofit
+  belongs_to :user
 
-  before_create :charge 
+  before_create :charge
 
-private 
+private
 
-  def charge 
+  def charge
     Stripe.api_key = "sk_test_BQokikJOvBiI2HlWgH4olfQ2"
 
     Stripe::Charge.create(
@@ -26,5 +26,5 @@ private
       },
       :description => "Charge for test@example.com"
     )
-  end 
-end 
+  end
+end

@@ -1,8 +1,8 @@
-class Nonprofit < ActiveRecord::Base 
+class Nonprofit < ActiveRecord::Base
 
-  validates :name, presence: true 
+  validates :name, presence: true
 
-  has_many :donations 
-  has_many :cards, through: :donations 
-  has_many :users, through: :donations 
-end 
+  has_many :donations
+  has_many :cards, through: :donations
+  has_many :users, through: :donations
+end
