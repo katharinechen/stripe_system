@@ -23,10 +23,10 @@ private
       :amount => 400,
       :currency => "usd",
       :card => {
-        :number => "4242424242424242",
-        :exp_month => 9,
-        :exp_year => 2015,
-        :cvc => "314"
+        :number => number,
+        :exp_month => exp_month,
+        :exp_year => exp_year,
+        :cvc => cvc
       },
       :description => "Charge for test@example.com"
     )
